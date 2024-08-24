@@ -1,4 +1,6 @@
 import json
+import os
+import sys
 import requests
 from typing import Union
 from pydantic import BaseModel
@@ -8,7 +10,7 @@ class GeoRequest(BaseModel):
     country: Union[str, None] = None
     state: Union[str, None] = None
 
-API_KEY = "djnVt5iW5XWoY+cb+GC3Lg==7pZ8vcw6WHiZ0oBN"
+weather_api = os.getenv("WEATHER_API_KEY")
 
 def get_lat_long(req: GeoRequest, api_key: str):
     api_url = f"https://api.api-ninjas.com/v1/geocoding?city={req["city"]}"
@@ -36,7 +38,7 @@ def main():
     print("Hello from Jan's Weather app written in Python")
  
     geo_resp = get_lat_long(
-        {"city": "City of Edinburgh", "country": "GB"}, API_KEY)
+        {"city": "City of Edinburgh", "country": "GB"}, weather_api)
     print(geo_resp)    
     geo_resp = json.loads(geo_resp)
     geo_resp = geo_resp[0]
