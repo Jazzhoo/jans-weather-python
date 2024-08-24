@@ -28,7 +28,7 @@ def get_weather(lon: float, lat: float):
     r = requests.get(f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current=temperature_2m",)
     print(f"Status: {r.status_code} and reason: {r. reason}")
     current_temp = r.json().get("current").get("temperature_2m")
-    print(f"Current temp: {current_temp}")
+    # print(f"Current temp: {current_temp}")
     return current_temp
 
 
